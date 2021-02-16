@@ -18,6 +18,13 @@ window.addEventListener('DOMContentLoaded', async function(event) {
   // console to ensure you've got good data
   // ⬇️ ⬇️ ⬇️
 
+  let apiKey = '24b6b790ca2a0b75abd168c277f0eacf'
+  let url = await fetch(`https://api.themoviedb.org/3/movie/now_playing?api_key=${apiKey}&language=en-US`)
+  let json = await url.json()
+  let movies = json.results
+  
+  console.log(movies)
+
   // ⬆️ ⬆️ ⬆️ 
   // End Step 1
   
@@ -34,6 +41,37 @@ window.addEventListener('DOMContentLoaded', async function(event) {
   // </div>
   // ⬇️ ⬇️ ⬇️
 
+  for (let i=0; i<movies.length; i++) {
+
+    let movieID = movies[i].id
+    let poster = movies[i].poster_path
+
+    let docRef = await db.collection('watched').doc(`${movieID}`).get()
+
+
+   if(docRef.data()) {
+
+
+    document.querySelector('.movies').insertAdjacentHTML('beforeend',
+
+    `<div class="w-1/5 p-4 opacity-20 movie-${movieID}">
+    <img src="https://image.tmdb.org/t/p/w500/${poster}" class="w-full">
+    <a href="#" class="watched-button block text-center text-white bg-green-500 mt-4 px-4 py-2 rounded">I've watched this!</a>
+  </div>
+   `)}
+    
+   
+   else {
+
+    document.querySelector('.movies').insertAdjacentHTML('beforeend',
+
+    `<div class="w-1/5 p-4 movie-${movieID}">
+     <img src="https://image.tmdb.org/t/p/w500/${poster}" class="w-full">
+     <a href="#" class="watched-button block text-center text-white bg-green-500 mt-4 px-4 py-2 rounded">I've watched this!</a>
+   </div>
+    `)}
+
+
   // ⬆️ ⬆️ ⬆️ 
   // End Step 2
 
@@ -48,6 +86,36 @@ window.addEventListener('DOMContentLoaded', async function(event) {
   //   the movie is watched. Use .classList.remove('opacity-20')
   //   to remove the class if the element already contains it.
   // ⬇️ ⬇️ ⬇️
+
+  for (let i=0; i<movies.length; i++) {
+
+    let movieID = movies[i].id
+    let poster = movies[i].poster_path
+
+    let docRef = await db.collection('watched').doc(`${movieID}`).get()
+
+
+   if(docRef.data()) {
+
+
+    document.querySelector('.movies').insertAdjacentHTML('beforeend',
+
+    `<div class="w-1/5 p-4 opacity-20 movie-${movieID}">
+    <img src="https://image.tmdb.org/t/p/w500/${poster}" class="w-full">
+    <a href="#" class="watched-button block text-center text-white bg-green-500 mt-4 px-4 py-2 rounded">I've watched this!</a>
+  </div>
+   `)}
+    
+   
+   else {
+
+    document.querySelector('.movies').insertAdjacentHTML('beforeend',
+
+    `<div class="w-1/5 p-4 movie-${movieID}">
+     <img src="https://image.tmdb.org/t/p/w500/${poster}" class="w-full">
+     <a href="#" class="watched-button block text-center text-white bg-green-500 mt-4 px-4 py-2 rounded">I've watched this!</a>
+   </div>
+    `)}
 
   // ⬆️ ⬆️ ⬆️ 
   // End Step 3

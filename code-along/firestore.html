@@ -20,6 +20,26 @@
   </div>
 
   <!-- Put the Firebase config here -->
+  <!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/8.2.6/firebase-app.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+     <script src="https://www.gstatic.com/firebasejs/8.2.4/firebase-firestore.js"></script>
+<script>
+  // Your web app's Firebase configuration
+
+  var firebaseConfig = {
+    apiKey: "AIzaSyA76pMVJ4mRBDI6WWvwTLvdYeUOsyUfs_o",
+    authDomain: "kiei-451-7a78f.firebaseapp.com",
+    projectId: "kiei-451-7a78f",
+    storageBucket: "kiei-451-7a78f.appspot.com",
+    messagingSenderId: "501165029056",
+    appId: "1:501165029056:web:bc1447b00e3fe441381f25"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+</script>
   
   <script src="firestore.js"></script>
 </body>
